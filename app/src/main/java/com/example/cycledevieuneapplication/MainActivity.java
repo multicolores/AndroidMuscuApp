@@ -37,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
         //    Toast.makeText(MainActivity.this, "Identifiants valid, bienvenue " + prenom + " !", Toast.LENGTH_SHORT).show();
         //else
         //   Toast.makeText(MainActivity.this, "Identifiants inccorect, try again " + prenom + " !", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, UserActivity.class);
+
+
+        //Intent intent = new Intent(this, UserActivity.class);
 
         if(checkUser(prenom, password)){
-            intent.putExtra(EXTRA_MESSAGE, prenom);
-            startActivity(intent);
+            //intent.putExtra(EXTRA_MESSAGE, prenom);
+            //startActivity(intent);
         }
         else
            Toast.makeText(MainActivity.this, "Incorrect user or login, try again " + prenom + " !", Toast.LENGTH_SHORT).show();
@@ -68,34 +70,5 @@ public class MainActivity extends AppCompatActivity {
         final Intent intentUserinfo = new Intent(this, userinfo.class);
         startActivity(intentUserinfo);
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("LyfeCycle", "onStart");
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("LyfeCycle", "onPause");
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("LyfeCycle", "onStop");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("LyfeCycle", "onResume");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("LyfeCycle", "onDestroy");
-    }
 }

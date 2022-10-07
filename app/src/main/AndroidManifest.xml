@@ -16,8 +16,6 @@
         <activity android:name=".QrcodeScanActivity"></activity>
         <activity android:name=".ExerciseInfo" />
         <activity android:name=".userinfo" />
-        <activity android:name=".VelibAbout" />
-        <activity android:name=".UserActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
