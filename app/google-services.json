@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "902934866031",
+    "project_id": "muscuappandroid",
+    "storage_bucket": "muscuappandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902934866031:android:afbbdfeb342f7d466d859a",
+        "android_client_info": {
+          "package_name": "com.example.cycledevieuneapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902934866031-ig84a1j3l22g02oqvegueem9s70ib4tl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSHzrzo_UzWvsiDHT38zfnIkduqd3sz7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902934866031-ig84a1j3l22g02oqvegueem9s70ib4tl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902934866031:android:aec6d6cdc1fe79de6d859a",
+        "android_client_info": {
+          "package_name": "com.example.muscuapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902934866031-ig84a1j3l22g02oqvegueem9s70ib4tl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSHzrzo_UzWvsiDHT38zfnIkduqd3sz7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902934866031-ig84a1j3l22g02oqvegueem9s70ib4tl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
