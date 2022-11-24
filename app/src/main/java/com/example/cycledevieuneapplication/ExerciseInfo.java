@@ -14,7 +14,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import static java.lang.Math.min;
+
 
 public class ExerciseInfo extends AppCompatActivity {
     ListView l;
@@ -49,6 +52,9 @@ public class ExerciseInfo extends AppCompatActivity {
         TextView nameView = findViewById(R.id.exerciseName);
         nameView.setText(correspondingExercise.getName());
 
+        TextView dateView = findViewById(R.id.dateValue);
+        dateView.setText(correspondingExercise.getLastsWorkoutDate());
+
         TextView descriptionView = findViewById(R.id.exerciseDescription);
         descriptionView.setText(correspondingExercise.getDescription());
 
@@ -56,6 +62,8 @@ public class ExerciseInfo extends AppCompatActivity {
         musclesView.setText(correspondingExercise.getMuscles());
 
         List<String> repsList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutRepetitions().split(",")));
+        Collections.reverse(repsList);
+        repsList = repsList.subList(0, min(repsList.size(), 10));
         l = (ListView) findViewById(R.id.listRepetitions);
         ArrayAdapter<String> arrayAdapterReps = new ArrayAdapter<String>(
                 this,
@@ -65,6 +73,9 @@ public class ExerciseInfo extends AppCompatActivity {
         l.setAdapter(arrayAdapterReps);
 
         List<String> poidsList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutPoids().split(",")));
+        Collections.reverse(poidsList);
+        poidsList = poidsList.subList(0, min(poidsList.size(), 10));
+
         l = (ListView) findViewById(R.id.listPoids);
         ArrayAdapter<String> arrayAdapterPoids = new ArrayAdapter<String>(
                 this,
@@ -74,6 +85,9 @@ public class ExerciseInfo extends AppCompatActivity {
         l.setAdapter(arrayAdapterPoids);
 
         List<String> recupList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutRecup().split(",")));
+        Collections.reverse(recupList);
+        recupList = recupList.subList(0, min(recupList.size(), 10));
+
         l = (ListView) findViewById(R.id.listRecup);
         ArrayAdapter<String> arrayAdapterRecup = new ArrayAdapter<String>(
                 this,
@@ -94,6 +108,15 @@ public class ExerciseInfo extends AppCompatActivity {
             correspondingExercise.setLastsWorkoutRecup(correspondingExercise.getLastsWorkoutRecup() + ", " + editTextRecup.getText().toString());
             db.updateExerciseOnWorkoutUpdate(correspondingExercise);
             getExerciseInfo(correspondingExercise.getName());
+            editTextReps.setText("");
+            editTextPoids.setText("");
+            editTextRecup.setText("");
+
         }
+    }
+
+    public void goUserinfo(View v){
+        final Intent intentUserinfo = new Intent(this, userinfo.class);
+        startActivity(intentUserinfo);
     }
 }

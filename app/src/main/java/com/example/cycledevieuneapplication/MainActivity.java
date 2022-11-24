@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public void goUserinfo(View v){
         final Intent intentUserinfo = new Intent(this, userinfo.class);
         startActivity(intentUserinfo);
