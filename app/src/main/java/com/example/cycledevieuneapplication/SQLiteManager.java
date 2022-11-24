@@ -31,6 +31,8 @@ public class SQLiteManager extends SQLiteOpenHelper
     private static final String DESC_FIELD = "desc";
     private static final String MUSCLES_FIELD = "muscles";
     private static final String REP_FIELD = "lastsWorkoutRepetitions";
+    private static final String RECUP_FIELD = "lastsWorkoutRecup";
+    private static final String POIDS_FIELD = "lastsWorkoutPoids";
     private static final String DATE_FIELD = "lastsWorkoutDate";
 
     @SuppressLint("SimpleDateFormat")
@@ -58,7 +60,7 @@ public class SQLiteManager extends SQLiteOpenHelper
 
         String script = "CREATE TABLE " + TABLE_NAME + "("
                 + ID_FIELD + " INTEGER PRIMARY KEY," + NAME_FIELD + " TEXT,"
-                + DESC_FIELD + " TEXT," + MUSCLES_FIELD + " TEXT," + REP_FIELD + " TEXT" + ")";
+                + DESC_FIELD + " TEXT," + MUSCLES_FIELD + " TEXT," + REP_FIELD + " TEXT," + RECUP_FIELD + " TEXT," + POIDS_FIELD + " TEXT," + DATE_FIELD + " TEXT" + ")";
 
 
         sqLiteDatabase.execSQL(script);
@@ -126,11 +128,17 @@ public class SQLiteManager extends SQLiteOpenHelper
 
 
     public void createDefaultExo()  {
+        //deleteTitle("1");
+        //deleteTitle("2");
+        //deleteTitle("3");
         Exercises dips = new Exercises("1","Dips","Exercise poly-articulaire travaillant principalement les pecs et les triceps.",
-                "pecs, triceps", "8 8 8 7, 9 8 7 7");
+                "pecs, triceps", "8 8 8 7, 9 8 7 7", "2min, 2m30", "50kg, 50kg",
+                "Thu Nov 24 10:53:19 GMT+01:00 2022, Thu Nov 24 10:53:19 GMT+01:00 2022");
         Exercises devlp = new Exercises("2","Dvlp couchée","Exercise poly-articulaire travaillant principalement les pecs et les triceps.",
-                "pecs, triceps", "8 8 8 7, 9 8 7 7");
-        Exercises squat = new Exercises("3","Squat","la description", "quadriceps, ecshio, grand fessier", "8 8 8 7, 9 8 7 7, 8 8 8 7, 9 8 7 7, 8 8 8 7, 9 8 7 7, 8 8 8 7, 9 8 7 7");
+                "pecs, triceps", "8 8 8 7, 9 8 7 7", "2min, 2m30", "10kg, 10kg",
+                "Thu Nov 24 10:53:19 GMT+01:00 2022, Thu Nov 24 10:53:19 GMT+01:00 2022");
+        Exercises squat = new Exercises("3","Squat","la description", "quadriceps, ecshio, grand fessier", "8 8 8 7, 9 8 7 7, 8 8 8 7","2min, 2m30, 2m30", "70kg, 75kg, 75kg",
+                "Thu Nov 24 10:53:19 GMT+01:00 2022, Thu Nov 24 10:53:19 GMT+01:00 2022, Thu Nov 24 10:53:19 GMT+01:00 2022\"");
 
         this.addExerciseToDatabase(dips);
         this.addExerciseToDatabase(devlp);
@@ -267,5 +275,13 @@ public class SQLiteManager extends SQLiteOpenHelper
         exo.setLastsWorkoutRepetitions(cursor.getString(4));
         // return note
         return exo;
+    }
+
+
+    public boolean deleteTitle(String name)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        return sqLiteDatabase.delete(TABLE_NAME, ID_FIELD + "=" + name, null) > 0;
     }
 }

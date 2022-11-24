@@ -11,6 +11,8 @@ public class Exercises {
     private String description;
     private String muscles;
     private String lastsWorkoutRepetitions;
+    private String lastsWorkoutRecup;
+    private String lastsWorkoutPoids;
     private String lastsWorkoutDate;
 
     public Exercises()  {
@@ -38,6 +40,17 @@ public class Exercises {
         this.description = description;
         this.muscles = muscles;
         this.lastsWorkoutRepetitions = lastsWorkoutRepetitions;
+        this.lastsWorkoutDate = lastsWorkoutDate;
+    }
+
+    public Exercises(String id, String name, String description, String muscles, String lastsWorkoutRepetitions, String lastsWorkoutRecup, String lastsWorkoutPoids, String lastsWorkoutDate) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.muscles = muscles;
+        this.lastsWorkoutRepetitions = lastsWorkoutRepetitions;
+        this.lastsWorkoutRecup = lastsWorkoutRecup;
+        this.lastsWorkoutPoids = lastsWorkoutPoids;
         this.lastsWorkoutDate = lastsWorkoutDate;
     }
 
@@ -87,5 +100,21 @@ public class Exercises {
 
     public void setLastsWorkoutDate(String lastsWorkoutDate) {
         this.lastsWorkoutDate = lastsWorkoutDate;
+    }
+
+    public String getLastsWorkoutRecup() {
+        return lastsWorkoutRecup;
+    }
+
+    public void setLastsWorkoutRecup(String lastsWorkoutRecup) {
+        this.lastsWorkoutRecup = lastsWorkoutRecup;
+    }
+
+    public String getLastsWorkoutPoids() {
+        return lastsWorkoutPoids;
+    }
+
+    public void setLastsWorkoutPoids(String lastsWorkoutPoids) {
+        this.lastsWorkoutPoids = lastsWorkoutPoids;
     }
 }
