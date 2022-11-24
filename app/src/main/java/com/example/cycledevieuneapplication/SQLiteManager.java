@@ -192,7 +192,7 @@ public class SQLiteManager extends SQLiteOpenHelper
                // exerciseList.add(exo);
                 //todo peut eter remettre le truc au dessus a voir
                 exercisesList.add(exo.getName());
-                exercisesList.add(exo.getLastsWorkoutRepetitions());
+                //exercisesList.add(exo.getLastsWorkoutRepetitions());
             } while (cursor.moveToNext());
         }
 
