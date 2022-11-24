@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +18,9 @@ import java.util.List;
 
 public class ExerciseInfo extends AppCompatActivity {
     ListView l;
-
+    private EditText editTextReps;
+    private EditText editTextPoids;
+    private EditText editTextRecup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,10 +29,11 @@ public class ExerciseInfo extends AppCompatActivity {
         Intent intent = getIntent();
         String exerciseName = intent.getStringExtra(userinfo.EXTRA_MESSAGE);
 
-
         getExerciseInfo(exerciseName);
 
-
+        editTextReps = (EditText) findViewById(R.id.editTextReps);
+        editTextPoids = (EditText) findViewById(R.id.editTextPoids);
+        editTextRecup = (EditText) findViewById(R.id.editTextRecup);
     }
 
     public void getExerciseInfo(String exerciseName){
@@ -73,4 +80,18 @@ public class ExerciseInfo extends AppCompatActivity {
 
     }
 
+
+    public void sendNewWorkout(View v){
+
+       //prenom = editTextReps.getText().toString();
+        //prenom = editTextPoids.getText().toString();
+        //prenom = editTextRecup.getText().toString();
+        if(editTextReps.getText().toString().matches("") || editTextPoids.getText().toString().matches("") || editTextRecup.getText().toString().matches("")){
+            Log.d("empty", "Un truc est vide");
+            Toast.makeText(ExerciseInfo.this, "Au moins un champ est vide, merci de tous les remplires", Toast.LENGTH_SHORT).show();
+        } else {
+            Log.d("ok", "ok");
+        }
+
+    }
 }
