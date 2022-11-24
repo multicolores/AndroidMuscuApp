@@ -46,12 +46,30 @@ public class ExerciseInfo extends AppCompatActivity {
 
         List<String> repsList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutRepetitions().split(",")));
         l = (ListView) findViewById(R.id.listRepetitions);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> arrayAdapterReps = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
                 repsList );
 
-        l.setAdapter(arrayAdapter);
+        l.setAdapter(arrayAdapterReps);
+
+        List<String> poidsList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutPoids().split(",")));
+        l = (ListView) findViewById(R.id.listPoids);
+        ArrayAdapter<String> arrayAdapterPoids = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                poidsList );
+
+        l.setAdapter(arrayAdapterPoids);
+
+        List<String> recupList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutRecup().split(",")));
+        l = (ListView) findViewById(R.id.listRecup);
+        ArrayAdapter<String> arrayAdapterRecup = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                recupList );
+
+        l.setAdapter(arrayAdapterRecup);
 
     }
 

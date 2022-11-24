@@ -28,9 +28,11 @@ public class SQLiteManager extends SQLiteOpenHelper
 
     private static final String ID_FIELD = "id";
     private static final String NAME_FIELD = "name";
-    private static final String DESC_FIELD = "desc";
+    private static final String DESC_FIELD = "description";
     private static final String MUSCLES_FIELD = "muscles";
     private static final String REP_FIELD = "lastsWorkoutRepetitions";
+    private static final String RECUP_FIELD = "lastsWorkoutRecup";
+    private static final String POIDS_FIELD = "lastsWorkoutPoids";
     private static final String DATE_FIELD = "lastsWorkoutDate";
 
     @SuppressLint("SimpleDateFormat")
@@ -54,11 +56,11 @@ public class SQLiteManager extends SQLiteOpenHelper
     {
         //Todo toussa la a changer look comment c'est fait la https://o7planning.org/10433/android-sqlite-database
         //todo et bien faire en sorte d'avoir les bonne colomne pour la table exo
-
+        Log.d("ooooo", "on passe par là");
 
         String script = "CREATE TABLE " + TABLE_NAME + "("
                 + ID_FIELD + " INTEGER PRIMARY KEY," + NAME_FIELD + " TEXT,"
-                + DESC_FIELD + " TEXT," + MUSCLES_FIELD + " TEXT," + REP_FIELD + " TEXT" + ")";
+                + DESC_FIELD + " TEXT," + MUSCLES_FIELD + " TEXT," + REP_FIELD + " TEXT," + RECUP_FIELD + " TEXT," + POIDS_FIELD + " TEXT," + DATE_FIELD + " TEXT" + ")";
 
 
         sqLiteDatabase.execSQL(script);
@@ -96,7 +98,9 @@ public class SQLiteManager extends SQLiteOpenHelper
         contentValues.put(DESC_FIELD, exo.getDescription());
         contentValues.put(MUSCLES_FIELD, exo.getMuscles());
         contentValues.put(REP_FIELD, exo.getLastsWorkoutRepetitions());
-       // contentValues.put(DATE_FIELD, exo.getLastsWorkoutDate());
+        contentValues.put(RECUP_FIELD, exo.getLastsWorkoutRecup());
+        contentValues.put(POIDS_FIELD, exo.getLastsWorkoutPoids());
+        contentValues.put(DATE_FIELD, exo.getLastsWorkoutDate());
 
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
     }
@@ -126,11 +130,17 @@ public class SQLiteManager extends SQLiteOpenHelper
 
 
     public void createDefaultExo()  {
+        //deleteTitle("1");
+        //deleteTitle("2");
+        //deleteTitle("3");
         Exercises dips = new Exercises("1","Dips","Exercise poly-articulaire travaillant principalement les pecs et les triceps.",
-                "pecs, triceps", "8 8 8 7, 9 8 7 7");
+                "pecs, triceps", "8 8 8 7, 9 8 7 7", "2min, 2m30", "50kg, 50kg",
+                "Thu Nov 24 10:53:19 GMT+01:00 2022, Thu Nov 24 10:53:19 GMT+01:00 2022");
         Exercises devlp = new Exercises("2","Dvlp couchée","Exercise poly-articulaire travaillant principalement les pecs et les triceps.",
-                "pecs, triceps", "8 8 8 7, 9 8 7 7");
-        Exercises squat = new Exercises("3","Squat","la description", "quadriceps, ecshio, grand fessier", "8 8 8 7, 9 8 7 7, 8 8 8 7, 9 8 7 7, 8 8 8 7, 9 8 7 7, 8 8 8 7, 9 8 7 7");
+                "pecs, triceps", "8 8 8 7, 9 8 7 7", "2min, 2m30", "10kg, 10kg",
+                "Thu Nov 24 10:53:19 GMT+01:00 2022, Thu Nov 24 10:53:19 GMT+01:00 2022");
+        Exercises squat = new Exercises("3","Squat","la description", "quadriceps, ecshio, grand fessier", "8 8 8 7, 9 8 7 7, 8 8 8 7","2min, 2m30, 2m30", "70kg, 75kg, 75kg",
+                "Thu Nov 24 10:53:19 GMT+01:00 2022, Thu Nov 24 10:53:19 GMT+01:00 2022, Thu Nov 24 10:53:19 GMT+01:00 2022\"");
 
         this.addExerciseToDatabase(dips);
         this.addExerciseToDatabase(devlp);
@@ -254,7 +264,7 @@ public class SQLiteManager extends SQLiteOpenHelper
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_NAME, new String[] { ID_FIELD,
-                        NAME_FIELD, DESC_FIELD, MUSCLES_FIELD, REP_FIELD }, NAME_FIELD + "=?",
+                        NAME_FIELD, DESC_FIELD, MUSCLES_FIELD, REP_FIELD, RECUP_FIELD, POIDS_FIELD, DATE_FIELD }, NAME_FIELD + "=?",
                 new String[] { name }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
@@ -265,7 +275,18 @@ public class SQLiteManager extends SQLiteOpenHelper
         exo.setDescription(cursor.getString(2));
         exo.setMuscles(cursor.getString(3));
         exo.setLastsWorkoutRepetitions(cursor.getString(4));
+        exo.setLastsWorkoutRecup(cursor.getString(5));
+        exo.setLastsWorkoutPoids(cursor.getString(6));
+        exo.setLastsWorkoutDate(cursor.getString(7));
         // return note
         return exo;
+    }
+
+
+    public boolean deleteTitle(String name)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        return sqLiteDatabase.delete(TABLE_NAME, ID_FIELD + "=" + name, null) > 0;
     }
 }
