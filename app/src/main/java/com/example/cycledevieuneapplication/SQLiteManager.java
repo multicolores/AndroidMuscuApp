@@ -12,6 +12,8 @@ import android.util.Log;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -135,12 +137,12 @@ public class SQLiteManager extends SQLiteOpenHelper
         //deleteTitle("3");
         Exercises dips = new Exercises("1","Dips","Exercise poly-articulaire travaillant principalement les pecs et les triceps.",
                 "pecs, triceps", "8 8 8 7, 9 8 7 7", "2min, 2m30", "50kg, 50kg",
-                "Thu Nov 24 10:53:19 GMT+01:00 2022, Thu Nov 24 10:53:19 GMT+01:00 2022");
+                "Thu Nov 24 10:53:19 GMT+01:00 2022");
         Exercises devlp = new Exercises("2","Dvlp couchée","Exercise poly-articulaire travaillant principalement les pecs et les triceps.",
                 "pecs, triceps", "8 8 8 7, 9 8 7 7", "2min, 2m30", "10kg, 10kg",
-                "Thu Nov 24 10:53:19 GMT+01:00 2022, Thu Nov 24 10:53:19 GMT+01:00 2022");
+                "Thu Nov 24 10:53:19 GMT+01:00 2022");
         Exercises squat = new Exercises("3","Squat","la description", "quadriceps, ecshio, grand fessier", "8 8 8 7, 9 8 7 7, 8 8 8 7","2min, 2m30, 2m30", "70kg, 75kg, 75kg",
-                "Thu Nov 24 10:53:19 GMT+01:00 2022, Thu Nov 24 10:53:19 GMT+01:00 2022, Thu Nov 24 10:53:19 GMT+01:00 2022\"");
+                "Thu Nov 24 10:53:19 GMT+01:00 2022");
 
         this.addExerciseToDatabase(dips);
         this.addExerciseToDatabase(devlp);
@@ -288,5 +290,20 @@ public class SQLiteManager extends SQLiteOpenHelper
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         return sqLiteDatabase.delete(TABLE_NAME, ID_FIELD + "=" + name, null) > 0;
+    }
+
+    public void updateExerciseOnWorkoutUpdate(Exercises exo)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(REP_FIELD, exo.getLastsWorkoutRepetitions());
+        contentValues.put(RECUP_FIELD, exo.getLastsWorkoutRecup());
+        contentValues.put(POIDS_FIELD, exo.getLastsWorkoutPoids());
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        contentValues.put(DATE_FIELD, formatter.format(date));
+
+        sqLiteDatabase.update(TABLE_NAME, contentValues, ID_FIELD + " =? ", new String[]{String.valueOf(exo.getId())});
     }
 }

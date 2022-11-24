@@ -21,6 +21,8 @@ public class ExerciseInfo extends AppCompatActivity {
     private EditText editTextReps;
     private EditText editTextPoids;
     private EditText editTextRecup;
+    private Exercises correspondingExercise;
+    SQLiteManager db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,8 @@ public class ExerciseInfo extends AppCompatActivity {
 
         Intent intent = getIntent();
         String exerciseName = intent.getStringExtra(userinfo.EXTRA_MESSAGE);
+
+        db = new SQLiteManager(this);
 
         getExerciseInfo(exerciseName);
 
@@ -39,8 +43,8 @@ public class ExerciseInfo extends AppCompatActivity {
     public void getExerciseInfo(String exerciseName){
 
         //Get data from DB corresponding with the qrcode
-        SQLiteManager db = new SQLiteManager(this);
-        Exercises correspondingExercise = db.getExerciseByname(exerciseName);
+
+        correspondingExercise = db.getExerciseByname(exerciseName);
 
         TextView nameView = findViewById(R.id.exerciseName);
         nameView.setText(correspondingExercise.getName());
@@ -82,16 +86,14 @@ public class ExerciseInfo extends AppCompatActivity {
 
 
     public void sendNewWorkout(View v){
-
-       //prenom = editTextReps.getText().toString();
-        //prenom = editTextPoids.getText().toString();
-        //prenom = editTextRecup.getText().toString();
         if(editTextReps.getText().toString().matches("") || editTextPoids.getText().toString().matches("") || editTextRecup.getText().toString().matches("")){
-            Log.d("empty", "Un truc est vide");
             Toast.makeText(ExerciseInfo.this, "Au moins un champ est vide, merci de tous les remplires", Toast.LENGTH_SHORT).show();
         } else {
-            Log.d("ok", "ok");
+            correspondingExercise.setLastsWorkoutRepetitions(correspondingExercise.getLastsWorkoutRepetitions() + ", " + editTextReps.getText().toString());
+            correspondingExercise.setLastsWorkoutPoids(correspondingExercise.getLastsWorkoutPoids() + ", " + editTextPoids.getText().toString());
+            correspondingExercise.setLastsWorkoutRecup(correspondingExercise.getLastsWorkoutRecup() + ", " + editTextRecup.getText().toString());
+            db.updateExerciseOnWorkoutUpdate(correspondingExercise);
+            getExerciseInfo(correspondingExercise.getName());
         }
-
     }
 }
