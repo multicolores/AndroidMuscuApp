@@ -34,16 +34,7 @@ public class userinfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userinfo);
-        Log.d("aaa", Calendar.getInstance().getTime().toString());
-
-        User user = new User("Mark", "24");
-
-        TextView nameView = findViewById(R.id.userName);
-        nameView.setText(user.getName());
-        //Todo pitet mettre date du dernier entrainement
-        TextView ageView = findViewById(R.id.userAge);
-        ageView.setText(user.getAge());
-
+        //Log.d("aaa", Calendar.getInstance().getTime().toString());
 
         getUsedExercisesList();
 

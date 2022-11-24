@@ -23,46 +23,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("LyfeCycle", "onCreate");
-        editTextPrenom = (EditText) findViewById(R.id.EditTextPrenom);
-        editTextPassword = (EditText) findViewById(R.id.EditTextPassword);
-        buttonSendButton = (Button) findViewById((R.id.SendButton));
-
-    }
-
-    public void envoyer(View v){
-        prenom = editTextPrenom.getText().toString();
-        password = editTextPassword.getText().toString();
-        //if(checkUser(prenom, password))
-        //    Toast.makeText(MainActivity.this, "Identifiants valid, bienvenue " + prenom + " !", Toast.LENGTH_SHORT).show();
-        //else
-        //   Toast.makeText(MainActivity.this, "Identifiants inccorect, try again " + prenom + " !", Toast.LENGTH_SHORT).show();
-
-
-        //Intent intent = new Intent(this, UserActivity.class);
-
-        if(checkUser(prenom, password)){
-            //intent.putExtra(EXTRA_MESSAGE, prenom);
-            //startActivity(intent);
-        }
-        else
-           Toast.makeText(MainActivity.this, "Incorrect user or login, try again " + prenom + " !", Toast.LENGTH_SHORT).show();
-
-
-        // ((TextView) findViewById(R.id.TextViewHello)).setText("hello"+prenom);
-    }
-
-
-
-    public boolean checkUser(String u_prenom, String u_password){
-        String realPrenom = "Florian";
-        String realPassword = "123";
-
-        if(u_prenom.equals(realPrenom) && u_password.equals(realPassword)){
-            return true;
-        }else{
-            return false;
-        }
     }
 
     public void goUserinfo(View v){
