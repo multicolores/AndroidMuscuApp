@@ -21,6 +21,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 public class userinfo extends AppCompatActivity {
@@ -58,7 +59,8 @@ public class userinfo extends AppCompatActivity {
         }
 
         this.l = (ListView) findViewById(R.id.listExercises);
-        List<Exercises> list =  db.getAllExercisesNames();
+        List<Exercises> list =  db.getAllExercisesNamesSortByDate();
+        Collections.reverse(list);
         this.exercisesList.addAll(list);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
@@ -141,4 +143,5 @@ public class userinfo extends AppCompatActivity {
         intent.putExtra(EXTRA_MESSAGE, exerciseName);
         startActivity(intent);
     }
+
 }

@@ -179,36 +179,19 @@ public class SQLiteManager extends SQLiteOpenHelper
         return exerciseList;
     }
 
-    public List<Exercises> getAllExercisesNames() {
-        Log.i("Log", "MyDatabaseHelper.getAllNotes ... " );
-
-        //List<Exercises> exerciseList = new ArrayList<Exercises>();
+    public List<Exercises> getAllExercisesNamesSortByDate() {
         ArrayList exercisesList = new ArrayList();
-        // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_NAME;
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME + " ORDER BY "+DATE_FIELD;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Exercises exo = new Exercises();
-                exo.setId(cursor.getString(0));
-                exo.setName(cursor.getString(1));
-                exo.setDescription(cursor.getString(2));
-                exo.setMuscles(cursor.getString(3));
-                exo.setLastsWorkoutRepetitions(cursor.getString(4));
-                //exo.setLastsWorkoutDate(cursor.getString(6));
-                // Adding note to list
-               // exerciseList.add(exo);
-                //todo peut eter remettre le truc au dessus a voir
-                exercisesList.add(exo.getName());
-                //exercisesList.add(exo.getLastsWorkoutRepetitions());
+                exercisesList.add(cursor.getString(1));
             } while (cursor.moveToNext());
         }
 
-        // return note list
         return exercisesList;
     }
 
