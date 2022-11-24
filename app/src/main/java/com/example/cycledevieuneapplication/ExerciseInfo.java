@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +18,11 @@ import java.util.List;
 
 public class ExerciseInfo extends AppCompatActivity {
     ListView l;
-
+    private EditText editTextReps;
+    private EditText editTextPoids;
+    private EditText editTextRecup;
+    private Exercises correspondingExercise;
+    SQLiteManager db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,17 +31,20 @@ public class ExerciseInfo extends AppCompatActivity {
         Intent intent = getIntent();
         String exerciseName = intent.getStringExtra(userinfo.EXTRA_MESSAGE);
 
+        db = new SQLiteManager(this);
 
         getExerciseInfo(exerciseName);
 
-
+        editTextReps = (EditText) findViewById(R.id.editTextReps);
+        editTextPoids = (EditText) findViewById(R.id.editTextPoids);
+        editTextRecup = (EditText) findViewById(R.id.editTextRecup);
     }
 
     public void getExerciseInfo(String exerciseName){
 
         //Get data from DB corresponding with the qrcode
-        SQLiteManager db = new SQLiteManager(this);
-        Exercises correspondingExercise = db.getExerciseByname(exerciseName);
+
+        correspondingExercise = db.getExerciseByname(exerciseName);
 
         TextView nameView = findViewById(R.id.exerciseName);
         nameView.setText(correspondingExercise.getName());
@@ -73,4 +84,16 @@ public class ExerciseInfo extends AppCompatActivity {
 
     }
 
+
+    public void sendNewWorkout(View v){
+        if(editTextReps.getText().toString().matches("") || editTextPoids.getText().toString().matches("") || editTextRecup.getText().toString().matches("")){
+            Toast.makeText(ExerciseInfo.this, "Au moins un champ est vide, merci de tous les remplires", Toast.LENGTH_SHORT).show();
+        } else {
+            correspondingExercise.setLastsWorkoutRepetitions(correspondingExercise.getLastsWorkoutRepetitions() + ", " + editTextReps.getText().toString());
+            correspondingExercise.setLastsWorkoutPoids(correspondingExercise.getLastsWorkoutPoids() + ", " + editTextPoids.getText().toString());
+            correspondingExercise.setLastsWorkoutRecup(correspondingExercise.getLastsWorkoutRecup() + ", " + editTextRecup.getText().toString());
+            db.updateExerciseOnWorkoutUpdate(correspondingExercise);
+            getExerciseInfo(correspondingExercise.getName());
+        }
+    }
 }
