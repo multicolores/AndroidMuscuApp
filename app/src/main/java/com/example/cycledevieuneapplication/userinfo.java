@@ -20,6 +20,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class userinfo extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class userinfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userinfo);
+        Log.d("aaa", Calendar.getInstance().getTime().toString());
 
         User user = new User("Mark", "24");
 

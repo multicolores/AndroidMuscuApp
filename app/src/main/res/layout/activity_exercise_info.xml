@@ -42,10 +42,58 @@
 
     <ListView
         android:id="@+id/listRepetitions"
-        android:layout_width="300dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
+
+
+    <ListView
+        android:id="@+id/listPoids"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toEndOf="@+id/listRepetitions"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
+
+    <ListView
+        android:id="@+id/listRecup"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toEndOf="@+id/listPoids"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
+
+    <TextView
+        android:id="@+id/textViewReps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="20dp"
+        android:text="Répetitions"
+        app:layout_constraintBottom_toTopOf="@+id/listRepetitions"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewPoids"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="20dp"
+        android:text="Poids"
+        app:layout_constraintBottom_toTopOf="@+id/listPoids"
+        app:layout_constraintStart_toEndOf="@+id/textViewReps" />
+
+    <TextView
+        android:id="@+id/textViewRecup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="20dp"
+        android:text="Récupération"
+        app:layout_constraintBottom_toTopOf="@+id/listRecup"
+        app:layout_constraintStart_toEndOf="@+id/textViewPoids" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
