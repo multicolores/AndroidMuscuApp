@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import static java.lang.Math.min;
+
 
 public class ExerciseInfo extends AppCompatActivity {
     ListView l;
@@ -61,6 +63,7 @@ public class ExerciseInfo extends AppCompatActivity {
 
         List<String> repsList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutRepetitions().split(",")));
         Collections.reverse(repsList);
+        repsList = repsList.subList(0, min(repsList.size(), 10));
         l = (ListView) findViewById(R.id.listRepetitions);
         ArrayAdapter<String> arrayAdapterReps = new ArrayAdapter<String>(
                 this,
@@ -71,6 +74,8 @@ public class ExerciseInfo extends AppCompatActivity {
 
         List<String> poidsList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutPoids().split(",")));
         Collections.reverse(poidsList);
+        poidsList = poidsList.subList(0, min(poidsList.size(), 10));
+
         l = (ListView) findViewById(R.id.listPoids);
         ArrayAdapter<String> arrayAdapterPoids = new ArrayAdapter<String>(
                 this,
@@ -81,6 +86,8 @@ public class ExerciseInfo extends AppCompatActivity {
 
         List<String> recupList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutRecup().split(",")));
         Collections.reverse(recupList);
+        recupList = recupList.subList(0, min(recupList.size(), 10));
+
         l = (ListView) findViewById(R.id.listRecup);
         ArrayAdapter<String> arrayAdapterRecup = new ArrayAdapter<String>(
                 this,
