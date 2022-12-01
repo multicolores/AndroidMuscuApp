@@ -72,7 +72,7 @@
         android:id="@+id/dateValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="16dp"
         android:text="22/03/2023"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,6 +83,7 @@
         android:id="@+id/imageView2"
         android:layout_width="420px"
         android:layout_height="420px"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateValue" />
@@ -114,15 +115,6 @@
         app:layout_constraintBottom_toTopOf="@+id/listRepetitions"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextPoids"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:inputType="text"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/editTextReps"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPoids" />
 
     <TextView
         android:id="@+id/textViewRecup"
@@ -148,10 +140,10 @@
         android:id="@+id/editTextRecup"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="4dp"
         android:inputType="text"
         android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/editTextPoids"
+        app:layout_constraintStart_toEndOf="@+id/addPoidsButton"
         app:layout_constraintTop_toBottomOf="@+id/textViewRecup" />
 
     <Button
@@ -184,6 +176,42 @@
         app:layout_constraintStart_toEndOf="@+id/listPoids"
         app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
 
+
+    <TextView
+        android:id="@+id/poidsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:text="99"
+        app:layout_constraintStart_toEndOf="@+id/removePoidsButton"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription" />
+
+    <Button
+        android:id="@+id/addPoidsButton"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="140dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="ajouterPoids"
+        android:text="+"
+        android:textColor="#111010"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/poidsValue"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription" />
+
+    <Button
+        android:id="@+id/removePoidsButton"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="140dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="enleverPoids"
+        android:text="-"
+        android:textColor="#111010"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/editTextReps"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

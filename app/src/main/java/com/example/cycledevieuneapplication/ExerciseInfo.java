@@ -23,11 +23,12 @@ import static java.lang.Math.min;
 public class ExerciseInfo extends AppCompatActivity {
     ListView l;
     private EditText editTextReps;
-    private EditText editTextPoids;
     private EditText editTextRecup;
     private Exercises correspondingExercise;
     SQLiteManager db;
     private ImageView mImageView;
+
+    private int poidsValue;
 
 
     @Override
@@ -43,7 +44,6 @@ public class ExerciseInfo extends AppCompatActivity {
         getExerciseInfo(exerciseName);
 
         editTextReps = (EditText) findViewById(R.id.editTextReps);
-        editTextPoids = (EditText) findViewById(R.id.editTextPoids);
         editTextRecup = (EditText) findViewById(R.id.editTextRecup);
 
     }
@@ -106,20 +106,24 @@ public class ExerciseInfo extends AppCompatActivity {
 
         l.setAdapter(arrayAdapterRecup);
 
+
+        TextView poidsView = findViewById(R.id.poidsValue);
+        poidsValue = Integer.parseInt(poidsList.get(0).replace("kg","").replace(" ",""));
+        poidsView.setText(Integer.toString(poidsValue) + "kg");
+
     }
 
 
     public void sendNewWorkout(View v){
-        if(editTextReps.getText().toString().matches("") || editTextPoids.getText().toString().matches("") || editTextRecup.getText().toString().matches("")){
+        if(editTextReps.getText().toString().matches("") || editTextRecup.getText().toString().matches("")){
             Toast.makeText(ExerciseInfo.this, "Au moins un champ est vide, merci de tous les remplires", Toast.LENGTH_SHORT).show();
         } else {
             correspondingExercise.setLastsWorkoutRepetitions(correspondingExercise.getLastsWorkoutRepetitions() + ", " + editTextReps.getText().toString());
-            correspondingExercise.setLastsWorkoutPoids(correspondingExercise.getLastsWorkoutPoids() + ", " + editTextPoids.getText().toString());
+            correspondingExercise.setLastsWorkoutPoids(correspondingExercise.getLastsWorkoutPoids() + ", " + Integer.toString(poidsValue) + "kg");
             correspondingExercise.setLastsWorkoutRecup(correspondingExercise.getLastsWorkoutRecup() + ", " + editTextRecup.getText().toString());
             db.updateExerciseOnWorkoutUpdate(correspondingExercise);
             getExerciseInfo(correspondingExercise.getName());
             editTextReps.setText("");
-            editTextPoids.setText("");
             editTextRecup.setText("");
 
         }
@@ -128,5 +132,22 @@ public class ExerciseInfo extends AppCompatActivity {
     public void goUserinfo(View v){
         final Intent intentUserinfo = new Intent(this, userinfo.class);
         startActivity(intentUserinfo);
+    }
+
+
+
+
+    public void ajouterPoids(View v){
+        Log.d("oo", "cccc");
+
+        poidsValue+=2;
+        TextView poidsView = findViewById(R.id.poidsValue);
+        poidsView.setText(Integer.toString(poidsValue) + "kg");
+    }
+
+    public void enleverPoids(View v){
+        poidsValue-=2;
+        TextView poidsView = findViewById(R.id.poidsValue);
+        poidsView.setText(Integer.toString(poidsValue) + "kg");
     }
 }
