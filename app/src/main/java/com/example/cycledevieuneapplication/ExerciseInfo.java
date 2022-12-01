@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -45,7 +46,6 @@ public class ExerciseInfo extends AppCompatActivity {
 
         editTextReps = (EditText) findViewById(R.id.editTextReps);
         editTextRecup = (EditText) findViewById(R.id.editTextRecup);
-
     }
 
     public void getExerciseInfo(String exerciseName){
@@ -106,9 +106,37 @@ public class ExerciseInfo extends AppCompatActivity {
         l.setAdapter(arrayAdapterRecup);
 
 
-        TextView poidsView = findViewById(R.id.poidsValue);
-        poidsValue = Integer.parseInt(poidsList.get(0).replace("kg","").replace(" ",""));
-        poidsView.setText(Integer.toString(poidsValue) + "kg");
+        List<String> suppList = new ArrayList<>();
+        for (int i =0; i<poidsList.size();i++){
+            suppList.add("-");
+        }
+
+        l = (ListView) findViewById(R.id.listRemove);
+        ArrayAdapter<String> arrayAdapterRemove = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                suppList );
+        l.setAdapter(arrayAdapterRemove);
+
+        this.l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                deleteWorkout(position);
+            }
+        });
+
+
+        if(poidsList.get(0) != "") {
+            TextView poidsView = findViewById(R.id.poidsValue);
+            poidsValue = Integer.parseInt(poidsList.get(0).replace("kg","").replace(" ",""));
+            poidsView.setText(Integer.toString(poidsValue) + "kg");
+        } else {
+            TextView poidsView = findViewById(R.id.poidsValue);
+            poidsValue = 50;
+            poidsView.setText(Integer.toString(poidsValue) + "kg");
+        }
+
 
     }
 
@@ -137,8 +165,6 @@ public class ExerciseInfo extends AppCompatActivity {
 
 
     public void ajouterPoids(View v){
-        Log.d("oo", "cccc");
-
         poidsValue+=2;
         TextView poidsView = findViewById(R.id.poidsValue);
         poidsView.setText(Integer.toString(poidsValue) + "kg");
@@ -148,5 +174,48 @@ public class ExerciseInfo extends AppCompatActivity {
         poidsValue-=2;
         TextView poidsView = findViewById(R.id.poidsValue);
         poidsView.setText(Integer.toString(poidsValue) + "kg");
+    }
+
+    public void deleteWorkout(int position){
+        Log.d("aaa", Integer.toString(position));
+        //todo faire la fonction correspondante dans sqlitemanager
+        List<String> repsList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutRepetitions().split(",")));
+        Collections.reverse(repsList);
+        repsList.remove(position);
+        Collections.reverse(repsList);
+
+        List<String> poidsList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutPoids().split(",")));
+        Collections.reverse(poidsList);
+        poidsList.remove(position);
+        Collections.reverse(poidsList);
+
+        List<String> recupList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutRecup().split(",")));
+        Collections.reverse(recupList);
+        recupList.remove(position);
+        Collections.reverse(recupList);
+
+        String repsString = "";
+        for (String s : repsList) {
+            repsString += s + ",";
+        }
+        repsString = repsString.substring(0, repsString.length() - 1);
+
+        String poidsString = "";
+        for (String s : poidsList) {
+            poidsString += s + ",";
+        }
+        poidsString = poidsString.substring(0, poidsString.length() - 1);
+
+        String recupString = "";
+        for (String s : recupList) {
+            recupString += s + ",";
+        }
+        recupString = recupString.substring(0, recupString.length() - 1);
+
+        correspondingExercise.setLastsWorkoutRepetitions(repsString);
+        correspondingExercise.setLastsWorkoutPoids(poidsString);
+        correspondingExercise.setLastsWorkoutRecup(recupString);
+        db.updateExerciseOnWorkoutUpdate(correspondingExercise);
+        getExerciseInfo(correspondingExercise.getName());
     }
 }

@@ -178,6 +178,15 @@
         app:layout_constraintStart_toEndOf="@+id/listRepetitions"
         app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
 
+    <ListView
+        android:id="@+id/listRemove"
+        android:layout_width="40dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="152dp"
+        android:background="#00E73B3B"
+        app:layout_constraintStart_toEndOf="@+id/listRecup"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
+
     <EditText
         android:id="@+id/editTextReps"
         android:layout_width="80dp"
