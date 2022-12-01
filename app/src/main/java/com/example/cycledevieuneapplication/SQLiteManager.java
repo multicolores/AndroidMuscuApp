@@ -135,18 +135,26 @@ public class SQLiteManager extends SQLiteOpenHelper
         //deleteTitle("1");
         //deleteTitle("2");
         //deleteTitle("3");
-        Exercises dips = new Exercises("1","Dips","Exercise poly-articulaire travaillant principalement les pecs et les triceps.",
-                "pecs, triceps", "8 8 8 7, 9 8 7 7", "2min, 2m30", "50kg, 50kg",
-                "Thu Nov 24 10:53:19 GMT+01:00 2022");
-        Exercises devlp = new Exercises("2","Dvlp couchée","Exercise poly-articulaire travaillant principalement les pecs et les triceps.",
+        //deleteTitle("4");
+
+        Exercises dips = new Exercises("1","Dips","L'exercice commence lorsque vous vous tenez aux barres parallèles avec les bras tendus. Vous pliez ensuite vos coudes jusqu'à ce que vos bras soient parallèles au sol avant de remonter jusqu'à la position de départ. Si vous souhaitez travailler principalement les pectoraux penchez vous vers l’avant.",
+                "pectoraux, triceps, épaule", "8 8 8 7, 9 8 7 7", "2min, 2m30", "50kg, 50kg",
+                "");
+        Exercises devlp = new Exercises("2","Développé couché","Le développé couché est un exercice poly-articulaire travaillant principalement les pectoraux et les triceps. Le mouvement consiste à abaisser la barre jusqu'à toucher le torse (phase excentrique) puis remonter (phase concentrique) jusqu'à la position de départ.",
                 "pecs, triceps", "8 8 8 7, 9 8 7 7", "2min, 2m30", "10kg, 10kg",
-                "Thu Nov 24 10:53:19 GMT+01:00 2022");
-        Exercises squat = new Exercises("3","Squat","la description", "quadriceps, ecshio, grand fessier", "8 8 8 7, 9 8 7 7, 8 8 8 7","2min, 2m30, 2m30", "70kg, 75kg, 75kg",
-                "Thu Nov 24 10:53:19 GMT+01:00 2022");
+                "");
+        Exercises squat = new Exercises("3","Squat","La flexion sur jambes, plus connue sous le nom de squat, consiste à effectuer des flexions des membres inférieurs avec une barre chargée reposant sur l'arrière des épaules. Il faut toujours penser à garder le dos droit durant l'exécution de ce mouvement.",
+                "quadriceps, ischio, grand fessier", "8 8 8 7, 9 8 7 7, 8 8 8 7","2min, 2m30, 2m30", "70kg, 75kg, 75kg",
+                "");
+
+        Exercises extentionTriceps = new Exercises("4","Extention Triceps","Exercice utilisé pour renforcer les muscles triceps. L'exercice se termine en poussant un objet vers le bas contre résistance. Cet exercice est un exemple de la fonction première du triceps, extension de l'articulation du coude.",
+                "Triceps", "8 8 8 7, 9 8 7 7, 8 8 8 7","1min, 1m30, 1m30", "20kg, 26kg, 26kg",
+                "");
 
         this.addExerciseToDatabase(dips);
         this.addExerciseToDatabase(devlp);
         this.addExerciseToDatabase(squat);
+        this.addExerciseToDatabase(extentionTriceps);
     }
 
 

@@ -58,8 +58,7 @@ public class ExerciseInfo extends AppCompatActivity {
         nameView.setText(correspondingExercise.getName());
 
         mImageView = (ImageView) findViewById(R.id.imageView2);
-        // ici il faudras enlever les espaces pour bien avoir le bon nom de fichier pour l'image
-        int resID = getResources().getIdentifier(correspondingExercise.getName().toLowerCase() , "drawable", getPackageName());
+        int resID = getResources().getIdentifier(correspondingExercise.getName().toLowerCase().replace(" ","").replace("é","e"), "drawable", getPackageName());
         mImageView.setImageResource(resID);
 
         TextView dateView = findViewById(R.id.dateValue);
