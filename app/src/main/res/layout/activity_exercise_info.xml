@@ -39,12 +39,12 @@
 
     <TextView
         android:id="@+id/exerciseDescription"
-        android:layout_width="300dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="16dp"
         android:text="Développer couchée description blablabla, Développer couchée description blablabla, Développer couchée description blablabla, Développer couchée description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.207"
+        app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exerciseMuscles" />
 
@@ -79,29 +79,29 @@
         app:layout_constraintTop_toBottomOf="@+id/dateLabel" />
 
 
-    <ListView
-        android:id="@+id/listRepetitions"
-        android:layout_width="150dp"
-        android:layout_height="500dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="170dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="420px"
+        android:layout_height="420px"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateValue" />
 
     <ListView
         android:id="@+id/listPoids"
         android:layout_width="100dp"
         android:layout_height="500dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="208dp"
         app:layout_constraintStart_toEndOf="@+id/listRepetitions"
         app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
 
     <ListView
-        android:id="@+id/listRecup"
-        android:layout_width="100dp"
+        android:id="@+id/listRepetitions"
+        android:layout_width="150dp"
         android:layout_height="500dp"
-        android:layout_marginTop="170dp"
-        app:layout_constraintStart_toEndOf="@+id/listPoids"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="208dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
 
     <TextView
@@ -109,27 +109,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="68dp"
         android:text="Répetitions"
         app:layout_constraintBottom_toTopOf="@+id/listRepetitions"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewPoids"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editTextPoids"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="70dp"
-        android:text="Poids"
-        app:layout_constraintBottom_toTopOf="@+id/listPoids"
-        app:layout_constraintStart_toEndOf="@+id/textViewReps" />
+        android:layout_marginStart="64dp"
+        android:inputType="text"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/editTextReps"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPoids" />
 
     <TextView
         android:id="@+id/textViewRecup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="68dp"
         android:text="Récupération"
         app:layout_constraintBottom_toTopOf="@+id/listRecup"
         app:layout_constraintStart_toEndOf="@+id/textViewPoids" />
@@ -139,29 +139,16 @@
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
         android:inputType="text"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewReps" />
 
     <EditText
-        android:id="@+id/editTextPoids"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="10dp"
-        android:inputType="text"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/editTextReps"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPoids" />
-
-    <EditText
         android:id="@+id/editTextRecup"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
         android:inputType="text"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/editTextPoids"
@@ -171,14 +158,31 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Envoyer"
-        android:textSize="12sp"
         android:backgroundTint="@android:color/background_dark"
-        android:textColor="@android:color/white"
         android:onClick="sendNewWorkout"
+        android:text="Envoyer"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRecup" />
+
+    <TextView
+        android:id="@+id/textViewPoids"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="68dp"
+        android:text="Poids"
+        app:layout_constraintBottom_toTopOf="@+id/listPoids"
+        app:layout_constraintStart_toEndOf="@+id/textViewReps" />
+
+    <ListView
+        android:id="@+id/listRecup"
+        android:layout_width="100dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="208dp"
+        app:layout_constraintStart_toEndOf="@+id/listPoids"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

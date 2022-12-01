@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,9 @@ public class ExerciseInfo extends AppCompatActivity {
     private EditText editTextRecup;
     private Exercises correspondingExercise;
     SQLiteManager db;
+    private ImageView mImageView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,7 @@ public class ExerciseInfo extends AppCompatActivity {
         editTextReps = (EditText) findViewById(R.id.editTextReps);
         editTextPoids = (EditText) findViewById(R.id.editTextPoids);
         editTextRecup = (EditText) findViewById(R.id.editTextRecup);
+
     }
 
     public void getExerciseInfo(String exerciseName){
@@ -51,6 +56,11 @@ public class ExerciseInfo extends AppCompatActivity {
 
         TextView nameView = findViewById(R.id.exerciseName);
         nameView.setText(correspondingExercise.getName());
+
+        mImageView = (ImageView) findViewById(R.id.imageView2);
+        // ici il faudras enlever les espaces pour bien avoir le bon nom de fichier pour l'image
+        int resID = getResources().getIdentifier(correspondingExercise.getName().toLowerCase() , "drawable", getPackageName());
+        mImageView.setImageResource(resID);
 
         TextView dateView = findViewById(R.id.dateValue);
         dateView.setText(correspondingExercise.getLastsWorkoutDate());

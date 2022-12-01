@@ -1,26 +1,19 @@
 package com.example.cycledevieuneapplication;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,8 +34,6 @@ public class userinfo extends AppCompatActivity {
     }
 
     public void getUsedExercisesList(){
-        //pitet remetre en sorte que si on click sur un exo, on arrive sr ExoInfo comme si on l'avais scan
-
         SQLiteManager db = new SQLiteManager(this);
         // Créer les exercises de base dans la base de donné seulement si elle est vide
         if(db.getExercisesNumber() == 0){
