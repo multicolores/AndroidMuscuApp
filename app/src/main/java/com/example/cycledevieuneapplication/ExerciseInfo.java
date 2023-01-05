@@ -30,6 +30,7 @@ public class ExerciseInfo extends AppCompatActivity {
     private ImageView mImageView;
 
     private int poidsValue;
+    private int recupValue;
 
 
     @Override
@@ -46,6 +47,11 @@ public class ExerciseInfo extends AppCompatActivity {
 
         editTextReps = (EditText) findViewById(R.id.editTextReps);
         editTextRecup = (EditText) findViewById(R.id.editTextRecup);
+
+        transformMinutesStringToSecondes("1min");
+        transformMinutesStringToSecondes("2min15s");
+        transformMinutesStringToSecondes("30s");
+        transformMinutesStringToSecondes("3min40s");
     }
 
     public void getExerciseInfo(String exerciseName){
@@ -97,6 +103,21 @@ public class ExerciseInfo extends AppCompatActivity {
         Collections.reverse(recupList);
         recupList = recupList.subList(0, min(recupList.size(), 10));
 
+        // set le temps de récupération dans l'input avec la dernière récupération utilisé ou 2min de base
+        if(recupList.get(0) != "") {
+            TextView recupView = findViewById(R.id.editTextRecup);
+            recupValue = Integer.parseInt(recupList.get(0).replace(" ",""));
+            recupView.setText(transformSecondsToMinutes(recupValue));
+        } else {
+            TextView recupView = findViewById(R.id.editTextRecup);
+            recupValue = 120;
+            recupView.setText(transformSecondsToMinutes(recupValue));
+        }
+
+        for (int i = 0; i < recupList.size(); i++) {
+            recupList.set(i,transformSecondsToMinutes(Integer.parseInt(recupList.get(i).replace(" ",""))));
+        }
+
         l = (ListView) findViewById(R.id.listRecup);
         ArrayAdapter<String> arrayAdapterRecup = new ArrayAdapter<String>(
                 this,
@@ -127,6 +148,7 @@ public class ExerciseInfo extends AppCompatActivity {
         });
 
 
+        // set le poids dans l'input avec le dernier poids utilisé ou 50kg de base
         if(poidsList.get(0) != "") {
             TextView poidsView = findViewById(R.id.poidsValue);
             poidsValue = Integer.parseInt(poidsList.get(0).replace("kg","").replace(" ",""));
@@ -137,7 +159,6 @@ public class ExerciseInfo extends AppCompatActivity {
             poidsView.setText(Integer.toString(poidsValue) + "kg");
         }
 
-
     }
 
 
@@ -147,11 +168,10 @@ public class ExerciseInfo extends AppCompatActivity {
         } else {
             correspondingExercise.setLastsWorkoutRepetitions(correspondingExercise.getLastsWorkoutRepetitions() + ", " + editTextReps.getText().toString());
             correspondingExercise.setLastsWorkoutPoids(correspondingExercise.getLastsWorkoutPoids() + ", " + Integer.toString(poidsValue) + "kg");
-            correspondingExercise.setLastsWorkoutRecup(correspondingExercise.getLastsWorkoutRecup() + ", " + editTextRecup.getText().toString());
+            correspondingExercise.setLastsWorkoutRecup(correspondingExercise.getLastsWorkoutRecup() + ", " + transformMinutesStringToSecondes(editTextRecup.getText().toString()));
             db.updateExerciseOnWorkoutUpdate(correspondingExercise);
             getExerciseInfo(correspondingExercise.getName());
             editTextReps.setText("");
-            editTextRecup.setText("");
 
         }
     }
@@ -176,8 +196,19 @@ public class ExerciseInfo extends AppCompatActivity {
         poidsView.setText(Integer.toString(poidsValue) + "kg");
     }
 
+    public void ajouterRecup(View v){
+        recupValue+=15;
+        TextView recupView = findViewById(R.id.editTextRecup);
+        recupView.setText(transformSecondsToMinutes(recupValue));
+    }
+
+    public void enleverRecup(View v){
+        recupValue-=15;
+        TextView recupView = findViewById(R.id.editTextRecup);
+        recupView.setText(transformSecondsToMinutes(recupValue));
+    }
+
     public void deleteWorkout(int position){
-        Log.d("aaa", Integer.toString(position));
         //todo faire la fonction correspondante dans sqlitemanager
         List<String> repsList = new ArrayList<>(Arrays.asList(correspondingExercise.getLastsWorkoutRepetitions().split(",")));
         Collections.reverse(repsList);
@@ -217,5 +248,37 @@ public class ExerciseInfo extends AppCompatActivity {
         correspondingExercise.setLastsWorkoutRecup(recupString);
         db.updateExerciseOnWorkoutUpdate(correspondingExercise);
         getExerciseInfo(correspondingExercise.getName());
+    }
+
+
+    public String transformSecondsToMinutes(int baseSeconds) {
+        int minutes = ((baseSeconds % 86400) % 3600) / 60;
+        int secondes = ((baseSeconds % 86400) % 3600) % 60;
+        if (minutes == 0) {
+            return Integer.toString(secondes)+"s";
+        } else if (secondes == 0 ) {
+            return Integer.toString(minutes)+"min";
+        } else {
+            return Integer.toString(minutes)+"min"+Integer.toString(secondes)+"s";
+        }
+    }
+
+    public String transformMinutesStringToSecondes(String  baseMinutes) {
+        int minutes;
+        int secondes;
+
+        if(baseMinutes.contains("min") && baseMinutes.contains("s")) {
+            minutes = Integer.parseInt(baseMinutes.split("min")[0]) ;
+            secondes = Integer.parseInt(baseMinutes.split("s")[0].split("min")[1]);
+            return Integer.toString(minutes*60 + secondes);
+
+        } else if (baseMinutes.contains("min")) {
+            minutes = Integer.parseInt(baseMinutes.split("min")[0]);
+            return Integer.toString(minutes*60);
+
+        } else {
+            return baseMinutes.split("s")[0];
+        }
+
     }
 }

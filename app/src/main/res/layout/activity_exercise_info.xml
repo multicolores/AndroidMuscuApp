@@ -100,7 +100,7 @@
         android:id="@+id/textViewRecup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="64dp"
         android:layout_marginBottom="88dp"
         android:text="Récupération"
         app:layout_constraintBottom_toTopOf="@+id/listRecup"
@@ -108,9 +108,9 @@
 
     <EditText
         android:id="@+id/editTextRecup"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:inputType="text"
         android:textSize="15sp"
@@ -121,7 +121,7 @@
         android:id="@+id/poidsValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="92dp"
         android:text="99"
         app:layout_constraintStart_toEndOf="@+id/removePoidsButton"
         app:layout_constraintTop_toBottomOf="@+id/exerciseDescription" />
@@ -130,7 +130,7 @@
         android:id="@+id/addPoidsButton"
         android:layout_width="30dp"
         android:layout_height="40dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="80dp"
         android:backgroundTint="#FFFFFF"
         android:onClick="ajouterPoids"
         android:text="+"
@@ -143,7 +143,7 @@
         android:id="@+id/textViewPoids"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="25dp"
         android:layout_marginBottom="88dp"
         android:text="Poids"
         app:layout_constraintBottom_toTopOf="@+id/listPoids"
@@ -191,7 +191,7 @@
         android:id="@+id/editTextReps"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="16dp"
         android:inputType="text"
         android:textSize="15sp"
@@ -202,8 +202,7 @@
         android:id="@+id/removePoidsButton"
         android:layout_width="30dp"
         android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="80dp"
         android:backgroundTint="#FFFFFF"
         android:onClick="enleverPoids"
         android:text="-"
@@ -216,11 +215,37 @@
         android:id="@+id/textViewReps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="15dp"
         android:layout_marginBottom="88dp"
         android:text="Répetitions"
         app:layout_constraintBottom_toTopOf="@+id/listRepetitions"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/removeRecupButton"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="enleverRecup"
+        android:text="-"
+        android:textColor="#111010"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRecup"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRecup" />
+
+    <Button
+        android:id="@+id/addRecupButton"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="ajouterRecup"
+        android:text="+"
+        android:textColor="#111010"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/editTextRecup"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRecup" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
