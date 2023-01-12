@@ -35,7 +35,8 @@ public class userinfo extends AppCompatActivity {
 
     public void getUsedExercisesList(){
         SQLiteManager db = new SQLiteManager(this);
-        // Créer les exercises de base dans la base de donné seulement si elle est vide
+
+        // Créer les exercises dans la base de donnée si elle est vide
         if(db.getExercisesNumber() == 0){
             db.createDefaultExo();
         }
@@ -62,32 +63,6 @@ public class userinfo extends AppCompatActivity {
 
     }
 
-
-
-    private void loadFromDBToMemory() {
-        SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this);
-       // sqLiteManager.populateExercisesListArray();
-    }
-
-    public void createExercises() {
-        SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this);
-
-        Exercises newExo = new Exercises("1","Dips","Exercise poly-articulaire travaillant principalement les pecs et les triceps.",
-                "pecs, triceps", "8 8 8 7, 9 8 7 7", "12-12-2022");
-
-        Exercises.exoArrayList.add(newExo);
-        sqLiteManager.addExerciseToDatabase(newExo);
-
-        finish();
-    }
-
-
-
-
-
-
-
-
     // QrCode Scan
     public void scanButtonPressed(View v){
         scanCode();
@@ -100,7 +75,6 @@ public class userinfo extends AppCompatActivity {
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         integrator.setPrompt("Scanning code");
         integrator.initiateScan();
-
     }
 
     @Override

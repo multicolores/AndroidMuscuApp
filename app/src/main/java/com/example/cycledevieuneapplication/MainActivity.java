@@ -10,12 +10,6 @@ import android.widget.EditText;
 
 
 public class MainActivity extends AppCompatActivity {
-    private EditText editTextPrenom;
-    private EditText editTextPassword;
-    private Button buttonSendButton;
-    private String prenom;
-    private String password;
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

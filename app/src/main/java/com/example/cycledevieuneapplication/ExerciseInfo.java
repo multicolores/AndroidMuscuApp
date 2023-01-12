@@ -47,11 +47,6 @@ public class ExerciseInfo extends AppCompatActivity {
 
         editTextReps = (EditText) findViewById(R.id.editTextReps);
         editTextRecup = (EditText) findViewById(R.id.editTextRecup);
-
-        transformMinutesStringToSecondes("1min");
-        transformMinutesStringToSecondes("2min15s");
-        transformMinutesStringToSecondes("30s");
-        transformMinutesStringToSecondes("3min40s");
     }
 
     public void getExerciseInfo(String exerciseName){
@@ -164,7 +159,7 @@ public class ExerciseInfo extends AppCompatActivity {
 
     public void sendNewWorkout(View v){
         if(editTextReps.getText().toString().matches("") || editTextRecup.getText().toString().matches("")){
-            Toast.makeText(ExerciseInfo.this, "Au moins un champ est vide, merci de tous les remplires", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ExerciseInfo.this, "Au moins un champ est vide, merci de tous les remplirs", Toast.LENGTH_SHORT).show();
         } else {
             correspondingExercise.setLastsWorkoutRepetitions(correspondingExercise.getLastsWorkoutRepetitions() + ", " + editTextReps.getText().toString());
             correspondingExercise.setLastsWorkoutPoids(correspondingExercise.getLastsWorkoutPoids() + ", " + Integer.toString(poidsValue) + "kg");
@@ -279,6 +274,5 @@ public class ExerciseInfo extends AppCompatActivity {
         } else {
             return baseMinutes.split("s")[0];
         }
-
     }
 }
