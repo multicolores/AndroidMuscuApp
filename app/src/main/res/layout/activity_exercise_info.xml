@@ -1,17 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".ExerciseInfo">
+
+    <Button
+        android:id="@+id/goToUserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:onClick="goUserinfo"
+        android:textSize="12sp"
+        android:text="Exercises"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/exerciseName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="70dp"
         android:text="Développer couchée"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -20,32 +39,214 @@
 
     <TextView
         android:id="@+id/exerciseDescription"
-        android:layout_width="300dp"
+        android:layout_width="225dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Développer couchée description blablabla, Développer couchée description blablabla, Développer couchée description blablabla, Développer couchée description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintHorizontal_bias="0.107"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exerciseMuscles" />
 
     <TextView
         android:id="@+id/exerciseMuscles"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text="Pecs, Trcieps, Epaules"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exerciseName" />
 
+    <TextView
+        android:id="@+id/dateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="16dp"
+        android:text="Dernière utilisation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dateValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:text="22/03/2023"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateLabel" />
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="420px"
+        android:layout_height="420px"
+        android:layout_marginTop="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateValue" />
 
     <ListView
         android:id="@+id/listRepetitions"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="150dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="152dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
+
+    <TextView
+        android:id="@+id/textViewRecup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="88dp"
+        android:text="Récupération"
+        app:layout_constraintBottom_toTopOf="@+id/listRecup"
+        app:layout_constraintStart_toEndOf="@+id/textViewPoids" />
+
+    <EditText
+        android:id="@+id/editTextRecup"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:inputType="text"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/addPoidsButton"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRecup" />
+
+    <TextView
+        android:id="@+id/poidsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:text="99"
+        app:layout_constraintStart_toEndOf="@+id/removePoidsButton"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription" />
+
+    <Button
+        android:id="@+id/addPoidsButton"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="ajouterPoids"
+        android:text="+"
+        android:textColor="#111010"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/poidsValue"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription" />
+
+    <TextView
+        android:id="@+id/textViewPoids"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="88dp"
+        android:text="Poids"
+        app:layout_constraintBottom_toTopOf="@+id/listPoids"
+        app:layout_constraintStart_toEndOf="@+id/textViewReps" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@android:color/background_dark"
+        android:onClick="sendNewWorkout"
+        android:text="Envoyer"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRecup" />
+
+    <ListView
+        android:id="@+id/listRecup"
+        android:layout_width="100dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="152dp"
+        app:layout_constraintStart_toEndOf="@+id/listPoids"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
+
+    <ListView
+        android:id="@+id/listPoids"
+        android:layout_width="100dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="152dp"
+        app:layout_constraintStart_toEndOf="@+id/listRepetitions"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
+
+    <ListView
+        android:id="@+id/listRemove"
+        android:layout_width="40dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="152dp"
+        android:background="#00E73B3B"
+        app:layout_constraintStart_toEndOf="@+id/listRecup"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription"></ListView>
+
+    <EditText
+        android:id="@+id/editTextReps"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
+        android:inputType="text"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReps" />
+
+    <Button
+        android:id="@+id/removePoidsButton"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="enleverPoids"
+        android:text="-"
+        android:textColor="#111010"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/editTextReps"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseDescription" />
+
+    <TextView
+        android:id="@+id/textViewReps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="88dp"
+        android:text="Répetitions"
+        app:layout_constraintBottom_toTopOf="@+id/listRepetitions"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/removeRecupButton"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="enleverRecup"
+        android:text="-"
+        android:textColor="#111010"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRecup"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRecup" />
+
+    <Button
+        android:id="@+id/addRecupButton"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="ajouterRecup"
+        android:text="+"
+        android:textColor="#111010"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/editTextRecup"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRecup" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

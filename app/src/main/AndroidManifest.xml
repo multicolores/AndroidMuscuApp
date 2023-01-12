@@ -13,12 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QrcodeScanActivity"></activity>
-        <activity android:name=".ExerciseInfo" />
-        <activity android:name=".userinfo" />
-        <activity android:name=".VelibAbout" />
-        <activity android:name=".UserActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".QrcodeScanActivity" android:label="MuscuApp"></activity>
+        <activity android:name=".ExerciseInfo" android:label="MuscuApp"/>
+        <activity android:name=".userinfo" android:label="MuscuApp"/>
+        <activity android:name=".MainActivity" android:label="MuscuApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
