@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,7 +38,7 @@ public class ExerciseInfo extends AppCompatActivity {
         setContentView(R.layout.activity_exercise_info);
 
         Intent intent = getIntent();
-        String exerciseName = intent.getStringExtra(userinfo.EXTRA_MESSAGE);
+        String exerciseName = intent.getStringExtra(ExercisesList.EXTRA_MESSAGE);
 
         db = new SQLiteManager(this);
 
@@ -172,7 +171,7 @@ public class ExerciseInfo extends AppCompatActivity {
     }
 
     public void goUserinfo(View v){
-        final Intent intentUserinfo = new Intent(this, userinfo.class);
+        final Intent intentUserinfo = new Intent(this, ExercisesList.class);
         startActivity(intentUserinfo);
     }
 

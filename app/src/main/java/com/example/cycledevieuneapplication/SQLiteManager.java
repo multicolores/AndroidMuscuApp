@@ -66,10 +66,8 @@ public class SQLiteManager extends SQLiteOpenHelper
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion)
     {
-        // Drop older table if existed
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
 
-        // Create tables again
         onCreate(sqLiteDatabase);
     }
 
@@ -92,10 +90,6 @@ public class SQLiteManager extends SQLiteOpenHelper
     }
 
     public void createDefaultExo()  {
-        //deleteTitle("1");
-        //deleteTitle("2");
-        //deleteTitle("3");
-        //deleteTitle("4");
 
         Exercises dips = new Exercises("1","Dips","L'exercice commence lorsque vous vous tenez aux barres parallèles avec les bras tendus. Vous pliez ensuite vos coudes jusqu'à ce que vos bras soient parallèles au sol avant de remonter jusqu'à la position de départ. Si vous souhaitez travailler principalement les pectoraux penchez vous vers l’avant.",
                 "pectoraux, triceps, épaule", "8 8 8 7, 9 8 7 7", "120, 135", "50kg, 50kg",
