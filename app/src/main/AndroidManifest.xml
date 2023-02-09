@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".QrcodeScanActivity" android:label="MuscuApp"></activity>
         <activity android:name=".ExerciseInfo" android:label="MuscuApp"/>
-        <activity android:name=".userinfo" android:label="MuscuApp"/>
+        <activity android:name=".ExercisesList" android:label="MuscuApp"/>
         <activity android:name=".MainActivity" android:label="MuscuApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

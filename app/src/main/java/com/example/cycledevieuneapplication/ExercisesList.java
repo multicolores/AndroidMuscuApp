@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class userinfo extends AppCompatActivity {
+public class ExercisesList extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.muscuApp.MESSAGE";
     private ListView l;
     private ArrayList exercisesList = new ArrayList();
